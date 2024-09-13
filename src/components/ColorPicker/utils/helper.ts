@@ -6,23 +6,23 @@
  * @LastEditTime: 2023-11-28 11:03:14
  */
 export const parseBackgroundValue = (value: string): string => {
-  if (value.startsWith('#')) return '纯色';
-  if (value.startsWith('linear-gradient')) return '渐变';
-  return '图案';
-};
+  if (value.startsWith('#')) return '纯色'
+  if (value.startsWith('linear-gradient')) return '渐变'
+  return '渐变'
+}
 
 interface Stop {
-  color: string;
-  offset: number;
+  color: string
+  offset: number
 }
 
 export const toGradientString = (angle: number, stops: Stop[]) => {
-  const s: string[] = [];
+  const s: string[] = []
   stops.forEach((stop) => {
-    s.push(`${stop.color} ${stop.offset * 100}%`);
-  });
-  return `linear-gradient(${angle}deg, ${s.join(',')})`;
-};
+    s.push(`${stop.color} ${stop.offset * 100}%`)
+  })
+  return `linear-gradient(${angle}deg, ${s.join(',')})`
+}
 
 /**
  * 显示全局提示
@@ -31,15 +31,15 @@ export const toGradientString = (angle: number, stops: Stop[]) => {
  * @returns
  */
 export function toolTip(content: string) {
-  const tooltip = drawTooltip(content);
-  document.body.appendChild(tooltip);
-  setTimeout(() => tooltip?.parentNode?.removeChild(tooltip), 2000);
+  const tooltip = drawTooltip(content)
+  document.body.appendChild(tooltip)
+  setTimeout(() => tooltip?.parentNode?.removeChild(tooltip), 2000)
 }
 
 function drawTooltip(content: string, tooltipVisible = true) {
-  const tooltip: any = document.createElement('div');
-  tooltip.id = 'color-pipette-tooltip-container';
-  tooltip.innerHTML = content;
+  const tooltip: any = document.createElement('div')
+  tooltip.id = 'color-pipette-tooltip-container'
+  tooltip.innerHTML = content
   tooltip.style = `
     position: fixed;
     left: 50%;
@@ -53,6 +53,6 @@ function drawTooltip(content: string, tooltipVisible = true) {
     color: #fff;
     font-size: 18px;
     pointer-events: none;
-  `;
-  return tooltip;
+  `
+  return tooltip
 }

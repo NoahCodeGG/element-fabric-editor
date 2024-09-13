@@ -14,7 +14,7 @@
         </el-col>
         <el-col :span="12">
           <InputNumber
-            v-model="baseAttr.right"
+            v-model="baseAttr.top"
             :append="$t('editor.attributes.top')"
             @on-change="(value) => changeCommon('top', value)"
           />
